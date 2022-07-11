@@ -1,6 +1,10 @@
 # DuckUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
+This is the front end for [DuckApi](https://github.com/TotzkePaul/DuckApi)
+
+This is for training a new developer how to work with angular. 
+
+Currently, it just displays a list of duck names, species and genus.
 
 ## Development server
 
