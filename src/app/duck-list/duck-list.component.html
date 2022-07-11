@@ -1,0 +1,33 @@
+<div class="container custom-container-2">
+    <!-- Show it when there is no duck -->
+    <div class="no-data text-center" *ngIf="Ducks.length == 0">
+      <p>There is no duck added yet!</p>
+      <button class="btn btn-outline-primary" >
+        Add Duck
+      </button>
+    </div>
+    <!-- Ducks list table, it hides when there is no duck -->
+    <div *ngIf="Ducks.length !== 0">
+      <h3 class="mb-3 text-center">Ducks List</h3>
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Genus</th>
+              <th scope="col">Species</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let duck of Ducks">
+              <td>{{ duck.id }}</td>
+              <td>{{ duck.name }}</td>
+              <td>{{ duck.genus }}</td>
+              <td>{{ duck.species }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
