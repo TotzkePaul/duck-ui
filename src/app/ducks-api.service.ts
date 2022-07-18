@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Duck } from './duck';
@@ -19,10 +19,14 @@ export class DuckService {
       'Content-Type': 'application/json',
     }),
   };
-  // HttpClient API get() method => Fetch ducks list
-  getDucks(): Observable<Duck[]> {
+  // HttpClient API get() method => Fetch duck list
+  getDucks(page:number, pageSize:number, sortBy:string): Observable<Duck[]> {
+    let params = new HttpParams();
+    params = params.set('Page', `${page}`);
+    params = params.set('PageSize', `${pageSize}`);
+    params = params.set('SortBy', `${sortBy}`);
     return this.http
-      .get<Duck[]>(this.apiURL + '/ducks')
+      .get<Duck[]>(this.apiURL + '/ducks', {params})
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API get() method => Fetch duck
