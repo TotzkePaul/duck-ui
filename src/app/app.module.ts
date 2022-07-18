@@ -31,7 +31,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: '0087e01b-fd4b-41a8-b9a3-cb073893e7dd',
       authority: 'https://login.microsoftonline.com/e08a9502-37c8-4815-bb5f-064a9dec7d94',
-      redirectUri: 'http://localhost:4200/'
+      redirectUri: 'https://totzkepaul.github.io/duck-ui/'
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
