@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { DuckService } from './ducks-api.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation, LogLevel } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
+import { NavbarComponent } from './navbar/navbar.component';
+import { environment } from '../environments/environment'
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -31,7 +34,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: '0087e01b-fd4b-41a8-b9a3-cb073893e7dd',
       authority: 'https://login.microsoftonline.com/e08a9502-37c8-4815-bb5f-064a9dec7d94',
-      redirectUri: 'https://totzkepaul.github.io/duck-ui/'
+      redirectUri: environment.redirectUri
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -68,7 +71,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 @NgModule({
   declarations: [
     AppComponent,
-    DuckListComponent
+    DuckListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MatListModule,
     MatPaginatorModule,
     MatFormFieldModule,
+    MatTableModule,
     HttpClientModule,
     MsalModule
   ],

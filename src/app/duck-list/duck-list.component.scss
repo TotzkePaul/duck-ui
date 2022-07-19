@@ -1,4 +1,7 @@
-table, td {
-    border: 1px solid black;
-    padding: 10px;
+.mat-row {
+    height: auto;
   }
+  
+.mat-cell, .mat-header-cell {
+    padding: 8px 16px 8px 0;
+}

@@ -1,14 +1,9 @@
-
-<mat-toolbar color="primary">
-  <a class="title" href="/">{{ title }}</a>
-
-  <div class="toolbar-spacer"></div>
-
-  <div *ngIf="email" class="email-padding">{{email}}</div>
-
-  <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
-  <button mat-raised-button *ngIf="loginDisplay" (click)="logout()">Logout</button>
-</mat-toolbar>
+<navbar [title]="title" 
+[email]="email"
+[loginDisplay]="loginDisplay"
+[login]="login"
+[logout]="logout"
+></navbar>
 <div class="container">
   <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
   <router-outlet *ngIf="!isIframe"></router-outlet>

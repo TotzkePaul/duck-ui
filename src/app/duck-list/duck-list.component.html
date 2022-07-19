@@ -7,42 +7,60 @@
 
   <div class="container custom-container-2">
       <!-- Show it when there is no duck -->
-      <div class="no-data text-center" *ngIf="Ducks.length == 0">
+      <div class="no-data text-center" *ngIf="ducks.length == 0">
         <p>There is no duck added yet!</p>
         <button class="btn btn-outline-primary" >
           Add Duck
         </button>
       </div>
       <!-- Ducks list table, it hides when there is no duck -->
-      <div *ngIf="Ducks.length !== 0">
+      <div *ngIf="ducks.length !== 0">
         <h3 class="mb-3 text-center">Duck List</h3>
         <div class="col-md-12">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Genus</th>
-                <th scope="col">Species</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let duck of Ducks">
-                <td>{{ duck.id }}</td>
-                <td>{{ duck.name }}</td>
-                <td>{{ duck.genus }}</td>
-                <td>{{ duck.species }}</td>
-              </tr>
-            </tbody>
+          <table mat-table [dataSource]="ducks" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="genus">
+              <th mat-header-cell *matHeaderCellDef> Genus </th>
+              <td mat-cell *matCellDef="let element"> {{element.genus}} </td>
+            </ng-container>
+            <ng-container matColumnDef="species">
+              <th mat-header-cell *matHeaderCellDef> Species </th>
+              <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+            </ng-container>
+            <ng-container matColumnDef="wingSpanCm">
+              <th mat-header-cell *matHeaderCellDef> Wing Span(Cm) </th>
+              <td mat-cell *matCellDef="let element"> {{element.wingSpanCm}} </td>
+            </ng-container>
+            <ng-container matColumnDef="weightKg">
+              <th mat-header-cell *matHeaderCellDef> Weight(Kg) </th>
+              <td mat-cell *matCellDef="let element"> {{element.weightKg}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createDate">
+              <th mat-header-cell *matHeaderCellDef> Create Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.createDate | date:'short'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+          <mat-paginator [length]="length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="pageEvent = $event; onPaginateChange($event)"
+                    aria-label="Select page">
+          </mat-paginator>
         </div>
       </div>
       
-      <mat-paginator [length]="length"
-                     [pageSize]="pageSize"
-                     [pageSizeOptions]="pageSizeOptions"
-                     (page)="pageEvent = $event; onPaginateChange($event)"
-                     aria-label="Select page">
-      </mat-paginator>
+
     </div>
   </div>

@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.email = this.authService.instance.getAllAccounts()[0].username;
   }
 
-  login() {
+  login= (): void => {
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
         this.authService.loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  logout() {
+  logout = (): void => {
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       this.authService.logoutPopup({
         postLogoutRedirectUri: "/",

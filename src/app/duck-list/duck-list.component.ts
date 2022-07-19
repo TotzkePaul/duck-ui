@@ -21,8 +21,8 @@ export class DuckListComponent implements OnInit {
 
   // MatPaginator Output
   pageEvent: PageEvent | undefined;
-
-  Ducks: Duck[] = [];
+  displayedColumns: string[] = ['id', 'name', 'genus', 'species', 'wingSpanCm', 'weightKg', 'createDate'];
+  ducks: Duck[] = [];
 
   constructor(public duckApi: DuckService, private authService: MsalService, private msalBroadcastService: MsalBroadcastService) { }
 
@@ -44,7 +44,7 @@ export class DuckListComponent implements OnInit {
 
   loadDucks(page: number, pageSize:number) {
     return this.duckApi.getDucks(page, pageSize ?? 10, "date_desc").subscribe((data: Duck[]) => {
-      this.Ducks = data;
+      this.ducks = data;
     });
   }
 
